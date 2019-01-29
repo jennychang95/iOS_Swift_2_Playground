@@ -62,7 +62,7 @@ let myCastedButtonView = myView as? UIButton
  */
 
 if let unwrapped = myCastedButtonView as? UIButton {
-    print("👻")
+    print("👻, \(unwrapped)")
 } else {
     print("❌")
 }
@@ -136,13 +136,11 @@ let library = [
   Song(name: "Never Gonna Give You Up", artist: "Rick Astley")
 ]
 
-
-
 for item in library {
-    if let item as? Movie {
-        print("movie, \(item.name)")
-    } else if let item as? Song {
-        print("song, \(item.name)")
+    if let unwrapped = item as? Movie {
+        print("movie, \(unwrapped.name), \(unwrapped.director)")
+    } else if let unwrapped2 = item as? Song {
+        print("song, \(unwrapped2.name), \(unwrapped2.artist)")
     }
 }
 

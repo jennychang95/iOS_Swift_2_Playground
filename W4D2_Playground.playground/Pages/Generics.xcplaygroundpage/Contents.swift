@@ -34,22 +34,30 @@ printMyTwoNumbers(num1: "three", num2: "four")
  Now you try! Write a generic function that takes in two parameters and multiply their value together and print the result. (Hint: You might run into an error after finishing. Continue to the next experiment to find out why!)
  */
 
+//func multiplyMyTwoNumbers<Element>(num1: Element, num2: Element) {
+//    var total = num1 * num2
+//    print("\(total)")
+//}
+
 
 /*:
  - Experiment:
  You might have run into error in the console regarding the multiplication operator can only be applied to numbered parameters. This makes sense as multiplying two Strings together doesn't make sense. So, we want to only take in variable types that *can* use the multiplication operator. In this case, we can limit the element type to types that conform to the `Numeric` protocol like below.
  */
 
-func multiply<Element: Numeric>(num1: Element, num2: Element) {
-  
+func multiply<T: Numeric>(num1: T, num2: T) {
+    let total = num1 * num2
+    print("\(total)")
 }
 
+multiply(num1: 20.5, num2: 4.7)
 
 /*:
  - Experiment:
  Update your multiplication function and test it! Try using different variable types to see what works and what doesn't.
  */
 
+// parameters must be of the same type 
 
 /*:
  - Experiment:
@@ -60,6 +68,16 @@ func multiply<Element: Numeric>(num1: Element, num2: Element) {
  For this experiment, refrain from using the array method `indexOf`. Also the protocol `Equatable` might be useful here. Search it up to see what it's about.
  */
 
+var moreNumbersWoo : [Int] = [12, 6, 18, 25, 31]
+
+func exists<T: Equatable>(array: [T], num: T) {
+    
+    for number in array {
+        if number == num {
+            
+        }
+    }
+}
 
 
 /*:

@@ -17,6 +17,15 @@ case (5, 6):
   print("We got 11!")
 case (6, 5):
   print("We got 11!")
+case (_, 1):
+    print("second dice is 1")
+case (2, _):
+    print("first dice is 2")
+case (1...3, 1...3):
+    print("both rolled between 1 to 3")
+case (let x, let y) where x == y:
+    print("both rolled the same")
+
 default:
   print("This roll doesn't matter to us")
 }
@@ -30,6 +39,7 @@ default:
  - case (let x, let y) where x == y
  */
 
+// 👻
 
 /*:
  - Callout(Challenge):
@@ -41,6 +51,20 @@ default:
  - Otherwise, indiciate the given day is not a holiday
  */
 
+var holidays = ("Mar", 25)
+
+switch holidays {
+case ("Dec", 25):
+    print("Christmas Day")
+case ("Jan", 1):
+    print("New Year's Day")
+case ("Feb", 14):
+    print("Valentine's Day")
+case ("Oct", 31):
+    print("Halloween Day")
+default:
+    print("not important")
+}
 
 /*:
  - Callout(Challenge):
@@ -55,5 +79,21 @@ default:
  - point is outside the blue outlined box
  */
 
+var myPoint = (-3,1)
+
+switch myPoint {
+case (0,_):
+    print("point is on the x axis")
+case (_,0):
+    print("point is on the y axis")
+case (-2...2,-2...2):
+    print("point is inside the blue outlined box")
+case (let x,_) where x > 2:
+    print("point is outside the box")
+case (_, let y) where y > 2:
+    print("point is outside the box")
+default:
+    print("can't be bothered, you're outside mate")
+}
 
 //: [Next](@next)

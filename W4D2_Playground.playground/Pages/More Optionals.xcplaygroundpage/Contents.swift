@@ -8,11 +8,14 @@
  Declare a optional Double value and set it to nil.
  */
 
+var number : Double? = nil
 
 /*:
  - Experiment:
  Assign a value your optional Double.
  */
+
+number = nil
 
 
 /*:
@@ -20,11 +23,18 @@
  Force unwrap the optional value. Why do you have to be careful about force unwrapping?
  */
 
+// it can crash my app if it can't execute unwrapping 👹
 
 /*:
  - Experiment:
  Use conditional unwrapping to verify if the optional has a value. Print the value if there is something, otherwise, print out to indicate there is no value present. Why is conditional unwrapping better than force unwrapping?
  */
+
+if let type = number {
+    print("\(type)")
+} else {
+    print("∅😱")
+}
 
 
 /*:
@@ -32,7 +42,25 @@
  Create a function that removes the `nil` values from the array and returns a new array with only the valid Strings.
  */
 var testData: [String?] = ["Heather", nil, "Mike", "John", nil, nil, "Bob"]
+var newData : [String] = [""]
 
+func removeValues(data:[String?]) -> [String] {
+    
+    for value in data {
+        
+        if let unwrapped = value {
+            print("\(unwrapped) 👻")
+            newData.append(unwrapped)
+        } else {
+            print("hi I'm nil now remove me from the array")
+            
+        }
+    }
+    
+    return newData
+}
+
+removeValues(data: testData)
 
 /*:
  - Callout(Challenge):
@@ -42,8 +70,26 @@ var testData: [String?] = ["Heather", nil, "Mike", "John", nil, nil, "Bob"]
  */
 // Should pass all checks and print all information
 let username: String? = "user1"
-let password: String? = "password123"
+let password: String? = nil
 let email: String? = "user1@lighthouselabs.ca"
+
+if let unwrappedUsername = username {
+    print("\(unwrappedUsername)")
+    
+    if let unwrappedPassword = password {
+        print("\(unwrappedPassword)")
+    } else {
+        print("password field is blank")
+    }
+    if let unwrappedEmail = email {
+        print("\(unwrappedEmail)")
+    } else {
+        print("email field is blank")
+    }
+    
+} else {
+    print("username field is blank")
+}
 
 // Should stop at password check and indicate password field is empty
 //let username: String? = "user1"
@@ -86,12 +132,42 @@ isMyNumberANegativeValue(myNumber: myNumber)
  Try creating your own guard statement with different conditional statements. Notice which boolean condition causes the code the enter the 'else' block or bypass it entirely.
  */
 
+let myHighSchool = "South Hampstead"
+
+func isMySchool(school: String) {
+    
+    guard myHighSchool == "South Hampstead" else {
+        print("how could you get your school name wrong")
+        return
+    }
+    print("woo you got your school name correct, you are smart")
+    
+    
+}
+
+isMySchool(school: myHighSchool)
 
 /*:
  - Experiment:
  Create a function that takes in two number parameters and divide them. We don't like dividing by zero, so ensure this doesn't happen. Otherwise, return the calculated value.
  */
 
+var n1: Int = 0
+var n2: Int = 0
+var calc: Int = 0
+
+func divisionMethod(n1: Int, n2: Int) {
+    
+    guard n1 != 0, n2 != 0 else {
+        print("cannot divide by 0")
+        return
+    }
+    
+    calc = n1 / n2
+    print("\(calc)")
+}
+
+divisionMethod(n1: 10, n2: 5)
 
 /*:
  Let's take a look at another example and see how we can use guard for optionals
@@ -124,11 +200,41 @@ isMyNumberAnOptional(myOptionalNumber: myOptionalNumber)
  Create a function that takes in an array of numbers. Have the function add all the numbers together and return the result. Make sure to `guard` against an empty array. Use `array.first` to check if there is at least one value in the array.
  */
 
+var array : [Int]? = [12,4,8,12,5]
+
+func moreNumbers(numbers:[Int]?) -> Int {
+    
+    guard let unwrapped = numbers else {
+        print("bad!!!")
+        return 0
+    }
+    
+    return unwrapped.reduce(0, +)
+}
+
+moreNumbers(numbers: array)
+
 
 /*:
  - Callout(Challenge):
  Now that we've learnt this new guard statement, let's rewrite the form validation challenge using the guard statements. How does it improve our current implementation?
  */
 
+let username1: String? = "jc"
+let password1: String? = "dinnnna"
+let email1: String? = "chang.jc95@gmail.com"
+
+func completeValidationForm(username: String?, password: String?, email: String?) {
+    
+    guard let unwrappedU = username, let unwrappedP = password, let unwrappedE = email else {
+        print("textfield is missing")
+        return
+    }
+    
+    print("\(unwrappedU), \(unwrappedP), \(unwrappedE)")
+    
+}
+
+completeValidationForm(username: username1, password: password1, email: email1)
 
 //: [Next](@next)

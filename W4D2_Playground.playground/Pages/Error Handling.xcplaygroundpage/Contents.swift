@@ -54,11 +54,38 @@ catch let error {
  Create a Human class that has a name and age property. Also, create an initializer for this class to set its initial properties.
  */
 
+class Human {
+    var name: String
+    var age: Int
+    
+    init(name: String, age: Int) {
+        self.name = name
+        self.age = age
+    }
+    
+    enum InputErrors:Error {
+        case emptyName
+        case emptyAge
+    }
+    
+    func checkInput(name: String?, age: Int?) throws {
+        guard let unwrapped = name else {
+            throw InputErrors.emptyName
+        }
+        
+        print("it's worked \(unwrapped)")
+    }
+}
+
+
 
 /*:
  - Experiment:
  Create your own errors that throw when the name provided is empty or if the age is invalid. Go back and update the Human's initializer to throw an error when the data passed in is invalid.
  */
+
+//var jenny = Human(name: 2, age: 23)
+
 
 
 /*:

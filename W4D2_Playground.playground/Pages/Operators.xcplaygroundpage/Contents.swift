@@ -46,6 +46,12 @@ let combinedValues = "abc" + 123
  Use the '*' operator to multiply a String and an Int. This returns a new String and repeats the given String the number of times delcared by the Int. ie: "abc" * 3 = "abcabcabc"
  */
 
+func * (left: String, right: Int) -> String {
+    
+    return String(repeating: left, count: right)
+}
+
+"Jenny" * 4
 
 /*:
  - Experiment:
@@ -58,12 +64,13 @@ let combinedValues = "abc" + 123
 extension Int {
   
   // Comment this function in to try it!
-  //    static func + (left: Int, right: Int) -> Int{
-  //
-  //        return left - right
-  //    }
+      static func + (left: Int, right: Int) -> Int{
+  
+          return left + right
+      }
 }
 
+2 + 4
 
 /*:
  ### Custom Operators
@@ -87,6 +94,14 @@ var incrementTwo = incrementOne+++
  Create your own custom operator using the square root symbol here: √
  */
 
+postfix operator √
+postfix func √ (number: Double) -> Double {
+    
+    return pow(number, 0.5)
+}
+
+4√
+
 
 /*:
  ### Swift Operators Guidelines
@@ -100,6 +115,12 @@ var incrementTwo = incrementOne+++
  When we have percentage values, we tend to convert them into their decimal form before doing any arithmetic to them. Create an operator with the '%' that will be a convenient operator to convert Int values into a usable percentage value. ie: 10% = 0.1
  */
 
+postfix operator %
+postfix func % (number: Double) -> String {
+    return "\(number/100)"
+}
+
+67%
 
 /*:
  - Callout(Challenge):
@@ -108,6 +129,14 @@ var incrementTwo = incrementOne+++
  For example, [1,2] + [3,4] = [4,6]. If the array count size are not the same, then return nil
  */
 
+var first: [Int] = [1,5]
+var second: [Int] = [2,7]
 
+func addArray(first: [Int], second: [Int]) -> [Int] {
+    
+    return [first[0]+second[0],first[1]+second[1]]
+}
+
+addArray(first: first, second: second)
 
 //: [Next](@next)

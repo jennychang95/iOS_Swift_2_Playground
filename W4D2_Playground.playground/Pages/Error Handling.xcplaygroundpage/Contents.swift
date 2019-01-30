@@ -17,7 +17,7 @@ enum DivideError: Error {
 /*:
  This is a function that divides numbers num1 and num2. Notice the `throws` keyword in the function. It means this function is capable of 'raising' or 'throwing' an error
  */
-func divideNumbers( num1: Double, num2: Double ) throws -> Double{
+func divideNumbers( num1: Double, num2: Double ) throws -> Double {
   
   // We can to catch the error if we are dividing by zero, because this is bad!
   if num2 == 0 {
@@ -58,9 +58,17 @@ class Human {
     var name: String
     var age: Int
     
-    init(name: String, age: Int) {
+    init(name: String?, age: Int?) throws {
+        guard let name = name else {
+            throw InputErrors.emptyName
+        }
+        guard let age = age else {
+            throw InputErrors.emptyAge
+        }
+        
         self.name = name
         self.age = age
+        
     }
     
     enum InputErrors:Error {
@@ -68,15 +76,13 @@ class Human {
         case emptyAge
     }
     
-    func checkInput(name: String?, age: Int?) throws {
-        guard let unwrapped = name else {
-            throw InputErrors.emptyName
-        }
-        
-        print("it's worked \(unwrapped)")
-    }
 }
 
+do {
+    var jc = try Human(name: nil, age: 4)
+} catch {
+    "error"
+}
 
 
 /*:
@@ -84,7 +90,6 @@ class Human {
  Create your own errors that throw when the name provided is empty or if the age is invalid. Go back and update the Human's initializer to throw an error when the data passed in is invalid.
  */
 
-//var jenny = Human(name: 2, age: 23)
 
 
 
@@ -93,13 +98,14 @@ class Human {
  Now you can test your new Human class and surround it around the do-catch blocks.
  */
 
+// 👻
 
 /*:
  - Experiment:
  Test your Human class again but don't surround it with a do-catch block and use `try?` instead. What do you notice? (What is the value of the new human when an error is thrown?)
  */
 
-
+/// CRRRAAAAAAAAAAAASH 💥
 /*:
  - Experiment:
  Given the following JSON data, try to parse the JSON using `JSONSerialization`, then print out each key-value.
@@ -108,6 +114,12 @@ class Human {
  */
 let data = "{\"firstName\": \"Bob\", \"lastName\": \"Doe\", \"vehicles\": [\"car\", \"motorcycle\", \"train\"]}".data(using: .utf8)!
 
+
+if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String:Any] {
+    
+    print(json)
+
+}
 
 /*:
  - Callout(Challenge):

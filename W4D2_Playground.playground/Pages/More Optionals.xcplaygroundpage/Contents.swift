@@ -177,13 +177,14 @@ let myOptionalNumber: Int? = 10
 
 // This function just checks if the given parameter is nil or not
 func isMyNumberAnOptional(myOptionalNumber: Int?){
-  
+    
   // This guard checks if 'myOptionalNumber' has a value or not. Similar concept to conditional unwrapping
   // If 'myOptionalNumber' is indeed nil, the else block will run
   // Otherwise, our guard let statement is looking for a valid value, and the code will continue to run
   guard let myUnwrapped = myOptionalNumber else {
     
     print("This value is nil")
+    
     return
   }
   

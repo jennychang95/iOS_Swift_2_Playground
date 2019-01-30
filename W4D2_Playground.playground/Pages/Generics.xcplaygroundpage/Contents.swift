@@ -72,13 +72,13 @@ var moreNumbersWoo : [Int] = [12, 6, 18, 25, 31]
 
 func exists<T: Equatable>(array: [T], num: T) {
     
-    for number in array {
-        if number == num {
-            
-        }
+    if array.contains(num) {
+        let indexPath = array.index(of: num)
+        print("\(indexPath ?? -1)") // added placeholder in case it can't execute
     }
 }
 
+exists(array: moreNumbersWoo, num: 18)
 
 /*:
  - Callout(Challenge):
@@ -93,6 +93,28 @@ func exists<T: Equatable>(array: [T], num: T) {
  - dequeue: remove an item from the queue, and return the removed element
  */
 
+class Queue<T> {
+
+var queueLine = [T] ()
+
+    func enqueue(hello: T) {
+        queueLine.append(hello)
+    }
+    
+    func dequeue(bye: T) {
+        print("\(bye)")
+        queueLine.removeLast()
+    }
+}
+
+let jenny = Queue<String>()
+jenny.enqueue(hello: "Jenny")
+
+let matt = Queue<String>()
+matt.enqueue(hello: "Matt")
+
+let jun = Queue<Int>()
+jun.enqueue(hello: 4)
 
 
 //: [Next](@next)
